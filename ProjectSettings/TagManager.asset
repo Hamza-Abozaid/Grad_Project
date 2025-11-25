@@ -10,6 +10,7 @@ TagManager:
   - PlayerHand
   - Destroyer
   - Machine
+  - Box
   layers:
   - Default
   - TransparentFX
