@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 public class PrefabSpawner : MonoBehaviour {
     public GameObject good_prefab;
@@ -10,7 +10,17 @@ public class PrefabSpawner : MonoBehaviour {
 
     public bool istarted = false;
 
+    public List<GameObject> active_objects = new List<GameObject>();
+
     private int streak;
+
+    private void Start()
+    {
+        if (istarted)
+        {
+            StartCoroutine(Spawning());
+        }
+    }
     public void Started()
     {
         if (!istarted) 
@@ -19,6 +29,15 @@ public class PrefabSpawner : MonoBehaviour {
             StartCoroutine(Spawning());
         }
     }
+
+    public void ClearAvtiveObjects()
+    {
+        foreach (var obj in active_objects)
+        {
+            Destroy(obj);
+        }
+    }
+
 
     GameObject RandomPrefab() 
     {
@@ -43,7 +62,8 @@ public class PrefabSpawner : MonoBehaviour {
     {
         while (true) 
         {
-            Instantiate(RandomPrefab(), spawn_pos.position, Quaternion.Euler(0,-90,0));
+            GameObject spawned_object = Instantiate(RandomPrefab(), spawn_pos.position, Quaternion.Euler(0,-90,0));
+            active_objects.Add(spawned_object);
             yield return new WaitForSeconds(delay);
         }
     }

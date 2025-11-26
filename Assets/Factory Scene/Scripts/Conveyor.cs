@@ -5,7 +5,7 @@ public class Conveyor : MonoBehaviour {
 
     [SerializeField] private float speed;
 
-    private bool isstarted = false;
+    public bool isstarted = false;
     private Vector2 offset;
 
 

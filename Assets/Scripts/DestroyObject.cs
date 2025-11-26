@@ -9,6 +9,7 @@ public class DestroyObject : MonoBehaviour
         {
             // Destroy this game object
             Destroy(gameObject);
+            MiddleMan.Instance.Spawner.active_objects.Remove(gameObject);
         }
     }
 }
